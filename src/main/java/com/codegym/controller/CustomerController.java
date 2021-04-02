@@ -6,6 +6,7 @@ import com.codegym.service.CustomerService;
 import com.codegym.service.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,7 +28,7 @@ public class CustomerController {
     }
 
     @GetMapping("/customers")
-    public ModelAndView listCustomer(@RequestParam("s") Optional<String> s, Pageable pageable) {
+    public ModelAndView listCustomer(@PageableDefault(size = 5) Pageable pageable, @RequestParam("s") Optional<String> s) {
         Page<Customer> customers;
         if (s.isPresent()) {
             customers = customerService.findAllByFirstNameContaining(s.get(), pageable);

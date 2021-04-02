@@ -14,10 +14,29 @@
 </form>
 <br/>
 <table border="1">
+    <table border="1">
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Province</th>
+            <th>Action</th>
+        </tr>
+        <th:block th:each="customer : ${customers}">
+            <tr>
+                <td th:text="${customer.firstName}"></td>
+                <td th:text="${customer.lastName}"></td>
+                <td th:text="${customer.province.name}"></td>
+                <td>
+                    <a th:href="@{/edit/__${customer.id}__}">Edit</a>
+                    <a th:href="@{/delete/__${customer.id}__}">Delete</a>
+                </td>
+
+            </tr>
+        </th:block>
     <div>
-        <a th:href="@{'/customers'(page=${customers.number - 1})}" th:if="${customers.hasPrevious()}">Previous</a>
+        <a th:href="@{/customers(page=${customers.number - 1})}" th:if="${customers.hasPrevious()}">Previous</a>
         <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>
-        <a th:href="@{'/customers'(page=${customers.number + 1})}" th:if="${customers.hasNext()}">Next</a>
+        <a th:href="@{/customers(page=${customers.number + 1})}" th:if="${customers.hasNext()}">Next</a>
     </div>
     </th:block>
 </table>

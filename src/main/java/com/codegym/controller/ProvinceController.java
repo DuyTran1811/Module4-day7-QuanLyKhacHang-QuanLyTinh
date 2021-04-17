@@ -87,9 +87,9 @@ public class ProvinceController {
     }
 
     @GetMapping("/view-province/{id}")
-    public ModelAndView viewProvince(@PathVariable("id") Long id){
+    public ModelAndView viewProvince(@PathVariable("id") Long id) {
         Province province = provinceService.findById(id);
-        if(province == null){
+        if (province == null) {
             return new ModelAndView("/error.404");
         }
         Iterable<Customer> customers = customerService.findAllByProvince(province);

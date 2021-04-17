@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProvinceRepository extends PagingAndSortingRepository<Province, Long> {
-    Province findByName(String name);
+
 }
